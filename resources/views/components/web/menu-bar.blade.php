@@ -7,16 +7,16 @@
         </button>
         <ul id="mainMenu" class="md:flex flex-row hidden md:static absolute top-full md:w-auto xs:w-64 w-56 md:bg-transparent bg-blue-800">
             <li>
-                <a href="{{ route('welcome', ['locale' => app()->getLocale()]) }}" class="block px-5 py-3 hover:bg-yellow-500 {{ request()->is(app()->getLocale()) ? 'bg-yellow-500' : '' }}">{{ __('web/menu-bar.home') }}</a>
+                <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="block px-5 py-3 hover:bg-yellow-500 {{ request()->is(app()->getLocale()) ? 'bg-yellow-500' : '' }}">{{ __('web/menu-bar.home') }}</a>
             </li>
             <li>
-                <a href="#" class="block px-5 py-3 hover:bg-yellow-500">{{ __('web/menu-bar.gallery') }}</a>
+                <a href="{{ route('gallery', ['locale' => app()->getLocale()]) }}" class="block px-5 py-3 hover:bg-yellow-500">{{ __('web/menu-bar.gallery') }}</a>
             </li>
             <li>
                 <a href="{{ route('about_us', ['locale' => app()->getLocale()]) }}" class="block px-5 py-3 hover:bg-yellow-500 {{ request()->is(app()->getLocale() . '/about-us') ? 'bg-yellow-500' : '' }}">{{ __('web/menu-bar.aboutUs') }}</a>
             </li>
             <li>
-                <a href="#" class="block px-5 py-3 hover:bg-yellow-500">{{ __('web/menu-bar.contactUs') }}</a>
+                <a href="{{ route('contact_us', ['locale' => app()->getLocale()]) }}" class="block px-5 py-3 hover:bg-yellow-500">{{ __('web/menu-bar.contactUs') }}</a>
             </li>
         </ul>
         <div class="relative">
@@ -27,10 +27,10 @@
             </button>
             <ul id="languageMenu" class="absolute hidden ltr:right-1 rtl:left-0  w-48 z-50 bg-blue-800 top-full">
                 <li>
-                    <a href="{{ route(Route::currentRouteName(), ['locale' => 'ar']) }}" class="flex gap-x-3 px-5 py-3 hover:bg-yellow-500"><img src="{{ asset('flags/sa.svg') }}" class="w-6" alt="">{{ __('العربية') }}</a>
+                    <a href="{{ route(Route::currentRouteName(), ['locale' => 'ar']) }}" class="flex gap-x-3 px-5 py-3 hover:bg-yellow-500 {{ app()->getLocale() === 'ar' ? 'bg-yellow-400' : '' }}"><img src="{{ asset('flags/sa.svg') }}" class="w-6" alt="">{{ __('العربية') }}</a>
                 </li>
                 <li>
-                    <a href="{{ route(Route::currentRouteName(), ['locale' => 'en']) }}" class="flex gap-x-3 px-5 py-3 hover:bg-yellow-500"><img src="{{ asset('flags/us.svg') }}" class="w-6" alt="">{{ __('English US') }}</a>
+                    <a href="{{ route(Route::currentRouteName(), ['locale' => 'en']) }}" class="flex gap-x-3 px-5 py-3 hover:bg-yellow-500 {{ app()->getLocale() === 'en' ? 'bg-yellow-400' : '' }}"><img src="{{ asset('flags/us.svg') }}" class="w-6" alt="">{{ __('English US') }}</a>
                 </li>
             </ul>
         </div>

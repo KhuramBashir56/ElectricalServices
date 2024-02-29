@@ -2,10 +2,18 @@
 return [
     'title' => 'What Service We Offer',
     'description' => 'Emergency electrical services are available 24/7 to address urgent electrical problems, such as power outages, electrical fires, or other safety hazards.',
+    'electricalWiring' => 'Electrical Wiring',
+    'electricalWiringDescription' => 'This involves the installation of electrical systems within buildings and structures. Electricians install wiring, outlets, switches, lighting fixtures, circuit breakers, and electrical panels.',
+    
+    
+    
+    
+    
+    
+    
+    
     'electricalPanelUpgrades' => 'Electrical Panel Upgrades',
     'electricalPanelUpgradesDescription' => 'Upgrading electrical panels is often necessary to meet increased power demands. This can involve replacing old fuse boxes with modern circuit breaker panels.',
-    'electricalWiringAndInstallation' => 'Electrical Wiring and Installation',
-    'electricalWiringAndInstallationDescription' => 'This involves the installation of electrical systems within buildings and structures. Electricians install wiring, outlets, switches, lighting fixtures, circuit breakers, and electrical panels.',
     'electricalRepairsAndMaintenance' => 'Electrical Repairs and Maintenance',
     'electricalRepairsAndMaintenanceDescription' => 'Electricians also provide services to repair and maintain electrical systems. This includes diagnosing and fixing issues, upgrading components, and ensuring safety compliance.',
     'electricalSafetyInspections' => 'Electrical Safety Inspections',

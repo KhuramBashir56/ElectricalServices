@@ -6,4 +6,9 @@ return [
     'aboutUs' => 'معلومات عنا',
     'languages' => 'اللغات',
     'menuToggle' => 'القائمة الرئيسية',
+    'termsAndConditions' => 'الأحكام والشروط',
+    'privacyPolicy' => 'سياسة الخصوصية',
+    'logout' => 'تسجيل خروج',
+    'login' => 'تسجيل الدخول',
+    'register' => 'يسجل',
 ];

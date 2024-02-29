@@ -3,7 +3,7 @@
         <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 mb-8">
             <div class="p-3">
                 <img src="{{ asset('org-logo.png') }}" alt="{{ config('app.name') }}" class="w-20">
-                <p class="my-5 text-white">{{ __('web/footer.description') }}</p>
+                <p class="my-5 text-white text-justify">{{ __('web/footer.description') }}</p>
                 <div class="flex gap-5 sm:justify-center">
                     <a href="#" class="text-yellow-400 hover:text-white">
                         <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 8 19">
@@ -40,80 +40,84 @@
             <div class="grid grid-cols-2 p-3 gap-8">
                 <div>
                     <h3 class="text-2xl text-yellow-400 mb-3">{{ __('web/footer.quickLinks') }}</h3>
-                    <ul>
+                    <ul class="divide-y-2 divide-white">
                         <li>
-                            <a href="#" class="border-b-2 block p-2 hover:bg-yellow-400 text-white">{{ __('web/menu-bar.home') }}</a>
+                            <a href="{{ route('home', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'home' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.home') }}</a>
                         </li>
                         <li>
-                            <a href="#" class="border-b-2 block p-2 hover:bg-yellow-400 text-white">{{ __('web/menu-bar.aboutUs') }}</a>
+                            <a href="{{ route('about_us', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'about_us' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.aboutUs') }}</a>
                         </li>
                         <li>
-                            <a href="#" class="border-b-2 block p-2 hover:bg-yellow-400 text-white">{{ __('web/menu-bar.gallery') }}</a>
+                            <a href="{{ route('gallery', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'gallery' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.gallery') }}</a>
                         </li>
                         <li>
-                            <a href="#" class="border-b-2 block p-2 hover:bg-yellow-400 text-white">{{ __('web/menu-bar.contactUs') }}</a>
+                            <a href="{{ route('contact_us', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'contact_us' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.contactUs') }}</a>
                         </li>
                     </ul>
                 </div>
                 <div>
                     <h3 class="text-2xl text-yellow-400 mb-3">{{ __('web/footer.usefulLinks') }}</h3>
-                    <ul>
+                    <ul class="divide-y-2 divide-white">
+                        @guest
+                            <li>
+                                <a href="{{ route('login', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'login' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.login') }}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('register', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'register' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.register') }}</a>
+                            </li>
+                        @endguest
                         <li>
-                            <a href="#" class="border-b-2 block p-2 hover:bg-yellow-400 text-white">{{ __('web/menu-bar.contactUs') }}</a>
+                            <a href="{{ route('terms_and_conditions', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'terms_and_conditions' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.termsAndConditions') }}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('privacy_policy', ['locale' => app()->getLocale()]) }}" class="block p-2 hover:bg-yellow-400 text-white {{ Route::currentRouteName() === 'privacy_policy' ? 'bg-yellow-400' : '' }}">{{ __('web/menu-bar.privacyPolicy') }}</a>
                         </li>
                     </ul>
                 </div>
             </div>
             <div class="w-full p-3">
                 <h3 class="text-2xl text-yellow-400">{{ __('web/footer.newsTitle') }}</h3>
-                <p class="text-gray-200 my-3">{{ __('web/footer.newsDescription') }}</p>
+                <p class="text-gray-200 my-3 text-justify">{{ __('web/footer.newsDescription') }}</p>
                 <form action="" class="w-full">
                     @csrf
                     <div class="flex w-full bg-white text-lg" dir="ltr">
-                        <input type="email" name="" id="" placeholder="{{ __('web/footer.placeholder') }}" class="w-full outline-none border-none p-3">
+                        <input type="email" name="" id="" placeholder="{{ __('web/footer.placeholder') }}" class="w-full outline-none border-none p-3 rtl:placeholder:text-right ltr:placeholder:text-left">
                         <button class="bg-yellow-400 hover:bg-yellow-500 hover:text-white text-blue-800 px-5">{{ __('web/footer.subscribeButton') }}</button>
                     </div>
                 </form>
                 <h3 class="text-2xl my-3 text-yellow-400">{{ __('web/menu-bar.languages') }}</h3>
                 <ul class="w-full flex gap-4">
                     <li class="w-full text-white">
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'ar']) }}" class="flex gap-x-3 w-full px-3 py-2 hover:bg-yellow-400 {{request()->is(Route::currentRouteName(), ['locale' => 'ar']) ? 'bg-yellow-400': ''}}"><img src="{{ asset('flags/sa.svg') }}" class="w-6" alt="">{{ __('العربية') }}</a>
+                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'ar']) }}" class="flex gap-x-3 w-full px-3 py-2 hover:bg-yellow-400 {{ app()->getLocale() === 'ar' ? 'bg-yellow-400' : '' }}"><img src="{{ asset('flags/sa.svg') }}" class="w-6" alt="">{{ __('العربية') }}</a>
                     </li>
                     <li class="w-full text-white">
-                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'en']) }}" class="flex gap-x-3 px-3 py-2 hover:bg-yellow-400 {{request()->is(Route::currentRouteName(), ['locale' => 'en']) ? 'bg-yellow-400': ''}}"><img src="{{ asset('flags/us.svg') }}" class="w-6" alt="">{{ __('English US') }}</a>
+                        <a href="{{ route(Route::currentRouteName(), ['locale' => 'en']) }}" class="flex gap-x-3 px-3 py-2 hover:bg-yellow-400 {{ app()->getLocale() === 'en' ? 'bg-yellow-400' : '' }}"><img src="{{ asset('flags/us.svg') }}" class="w-6" alt="">{{ __('English US') }}</a>
                     </li>
                 </ul>
             </div>
         </section>
         <section class="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-6 max-w-5xl mx-auto p-3">
-            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-blue-700 p-5 w-full ">
+            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-blue-600 p-5 w-full hover:scale-105">
                 <div class="p-3 bg-yellow-400 text-blue-900 rounded-full flex justify-center items-center">
-                    <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M12.166 8.94c-.524 1.062-1.234 2.12-1.96 3.07A31.493 31.493 0 0 1 8 14.58a31.481 31.481 0 0 1-2.206-2.57c-.726-.95-1.436-2.008-1.96-3.07C3.304 7.867 3 6.862 3 6a5 5 0 0 1 10 0c0 .862-.305 1.867-.834 2.94zM8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10z" />
-                        <path d="M8 8a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 1a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
-                    </svg>
+                    <span class="material-symbols-outlined text-4xl">location_on</span>
                 </div>
                 <div class="px-3 text-center ltr:xs:text-left rtl:xs:text-right">
                     <address class="text-lg font-bold text-white not-italic">{{ __('web/header.address') }}</address>
                     <address class="text-gray-200 not-italic">{{ __('web/header.country') }}</address>
                 </div>
             </div>
-            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-yellow-400 p-5 w-full md:col-start-1 md:row-start-1 lg:col-start-2  col-start-1 row-start-2">
+            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-yellow-400 p-5 w-full md:col-start-1 md:row-start-1 lg:col-start-2  col-start-1 row-start-2 hover:scale-105">
                 <div class="p-3 bg-blue-900 text-yellow-400 rounded-full flex justify-center items-center">
-                    <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                    </svg>
+                    <span class="material-symbols-outlined text-4xl">phone_iphone</span>
                 </div>
                 <div class="px-3 text-center ltr:xs:text-left rtl:xs:text-right">
                     <address dir="ltr" class="text-lg font-bold text-white not-italic">{{ __('web/header.contact_number') }}</address>
                     <address class="text-gray-200 not-italic">{{ __('web/header.contact') }}</address>
                 </div>
             </div>
-            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-blue-700 p-5 w-full">
+            <div class="flex flex-col xs:flex-row gap-y-3 items-center bg-blue-600 p-5 w-full hover:scale-105">
                 <div class="p-3 bg-yellow-400 text-blue-900 rounded-full flex justify-center items-center">
-                    <svg width="26" height="26" fill="currentColor" viewBox="0 0 16 16">
-                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z" />
-                    </svg>
+                    <span class="material-symbols-outlined text-4xl">email</span>
                 </div>
                 <div class="px-3 text-center ltr:xs:text-left rtl:xs:text-right">
                     <address class="text-lg font-bold text-white not-italic">{{ __('web/header.email_address') }}</address>
